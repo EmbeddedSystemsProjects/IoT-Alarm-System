@@ -100,6 +100,26 @@ int[0,1] burgler_in;
 		</transition>
 	</template>
 	<template>
+		<name>Burgler</name>
+		<location id="id16" x="-263" y="-85">
+			<name x="-273" y="-119">Idle</name>
+		</location>
+		<location id="id17" x="-93" y="-85">
+			<name x="-103" y="-119">Entered</name>
+		</location>
+		<init ref="id16"/>
+		<transition id="id18">
+			<source ref="id17"/>
+			<target ref="id16"/>
+			<nail x="-170" y="8"/>
+		</transition>
+		<transition id="id19">
+			<source ref="id16"/>
+			<target ref="id17"/>
+			<label kind="assignment" x="-245" y="-85">burgler_in = 1</label>
+		</transition>
+	</template>
+	<template>
 		<name>PIN_checker</name>
 		<declaration>clock countdown;
 int[0,3] failed_attempts;
@@ -113,122 +133,122 @@ void update_attempts(int[0,1] b){
     failed_attempts += 1;
     }
 }</declaration>
-		<location id="id16" x="-476" y="-187">
+		<location id="id20" x="-476" y="-187">
 		</location>
-		<location id="id17" x="-238" y="59">
+		<location id="id21" x="-238" y="59">
 			<label kind="invariant" x="-264" y="59">countdown&lt;=3000</label>
 		</location>
-		<location id="id18" x="-136" y="-187">
+		<location id="id22" x="-136" y="-187">
 			<committed/>
 		</location>
-		<location id="id19" x="-323" y="-187">
+		<location id="id23" x="-323" y="-187">
 			<committed/>
 		</location>
-		<init ref="id16"/>
-		<transition id="id20">
-			<source ref="id18"/>
-			<target ref="id16"/>
+		<init ref="id20"/>
+		<transition id="id24">
+			<source ref="id22"/>
+			<target ref="id20"/>
 			<label kind="guard" x="-323" y="-136">PIN_ok == 0 &amp; failed_attempts &lt; 3</label>
 			<label kind="synchronisation" x="-306" y="-102">PIN_checked!</label>
 			<nail x="-212" y="-110"/>
 			<nail x="-357" y="-110"/>
 		</transition>
-		<transition id="id21">
-			<source ref="id18"/>
-			<target ref="id16"/>
+		<transition id="id25">
+			<source ref="id22"/>
+			<target ref="id20"/>
 			<label kind="guard" x="-390" y="-297">PIN_ok == 1</label>
 			<label kind="synchronisation" x="-390" y="-280">PIN_checked!</label>
 			<nail x="-178" y="-263"/>
 			<nail x="-408" y="-263"/>
 		</transition>
-		<transition id="id22">
-			<source ref="id17"/>
-			<target ref="id16"/>
+		<transition id="id26">
+			<source ref="id21"/>
+			<target ref="id20"/>
 			<label kind="guard" x="-366" y="25">countdown&gt;=3000</label>
 			<label kind="assignment" x="-552" y="-68">PIN_suspended = 0, failed_attempts = 0</label>
 		</transition>
-		<transition id="id23">
-			<source ref="id18"/>
-			<target ref="id17"/>
+		<transition id="id27">
+			<source ref="id22"/>
+			<target ref="id21"/>
 			<label kind="guard" x="-161" y="-76">PIN_ok == 0 &amp; failed_attempts &gt;= 3</label>
 			<label kind="synchronisation" x="-161" y="-42">PIN_checked!</label>
 			<label kind="assignment" x="-204" y="17">countdown=0, PIN_suspended = 1</label>
 		</transition>
-		<transition id="id24">
-			<source ref="id19"/>
-			<target ref="id18"/>
+		<transition id="id28">
+			<source ref="id23"/>
+			<target ref="id22"/>
 			<label kind="select" x="-306" y="-238">r : int[0,1]</label>
 			<label kind="synchronisation" x="-306" y="-204">insert_PIN!</label>
 			<label kind="assignment" x="-314" y="-187">update_attempts(r)</label>
 		</transition>
-		<transition id="id25">
-			<source ref="id16"/>
-			<target ref="id19"/>
+		<transition id="id29">
+			<source ref="id20"/>
+			<target ref="id23"/>
 			<label kind="synchronisation" x="-442" y="-204">PIN_check?</label>
 		</transition>
 	</template>
 	<template>
 		<name>Controller</name>
-		<location id="id26" x="-569" y="-178">
+		<location id="id30" x="-569" y="-178">
 			<name x="-579" y="-212">Off</name>
 		</location>
-		<location id="id27" x="-323" y="-178">
+		<location id="id31" x="-323" y="-178">
 			<committed/>
 		</location>
-		<location id="id28" x="263" y="-178">
+		<location id="id32" x="263" y="-178">
 			<name x="272" y="-212">On</name>
 		</location>
-		<location id="id29" x="-178" y="-178">
+		<location id="id33" x="-178" y="-178">
 		</location>
-		<location id="id30" x="-646" y="-110">
+		<location id="id34" x="-646" y="-110">
 			<committed/>
 		</location>
-		<location id="id31" x="357" y="-119">
+		<location id="id35" x="357" y="-119">
 			<committed/>
 		</location>
-		<location id="id32" x="136" y="-178">
+		<location id="id36" x="136" y="-178">
 			<committed/>
 		</location>
-		<location id="id33" x="-476" y="0">
+		<location id="id37" x="-476" y="0">
 		</location>
-		<init ref="id26"/>
-		<transition id="id34">
-			<source ref="id33"/>
-			<target ref="id26"/>
+		<init ref="id30"/>
+		<transition id="id38">
+			<source ref="id37"/>
+			<target ref="id30"/>
 			<label kind="synchronisation" x="-603" y="-51">deactivate_alarm!</label>
 		</transition>
-		<transition id="id35">
-			<source ref="id29"/>
-			<target ref="id28"/>
+		<transition id="id39">
+			<source ref="id33"/>
+			<target ref="id32"/>
 			<label kind="guard" x="-118" y="-85">!PIN_ok and alarm_active</label>
 			<label kind="synchronisation" x="-118" y="-68">PIN_checked?</label>
 			<nail x="-136" y="-51"/>
 			<nail x="195" y="-51"/>
 		</transition>
-		<transition id="id36">
-			<source ref="id32"/>
-			<target ref="id28"/>
+		<transition id="id40">
+			<source ref="id36"/>
+			<target ref="id32"/>
 			<label kind="synchronisation" x="154" y="-195">activate_alarm!</label>
 		</transition>
-		<transition id="id37">
-			<source ref="id28"/>
-			<target ref="id31"/>
+		<transition id="id41">
+			<source ref="id32"/>
+			<target ref="id35"/>
 			<label kind="synchronisation" x="229" y="-110">btn_A?</label>
 			<nail x="289" y="-76"/>
 		</transition>
-		<transition id="id38">
-			<source ref="id31"/>
-			<target ref="id28"/>
+		<transition id="id42">
+			<source ref="id35"/>
+			<target ref="id32"/>
 			<label kind="synchronisation" x="289" y="-153">btn_disabled!</label>
 		</transition>
-		<transition id="id39">
-			<source ref="id30"/>
-			<target ref="id26"/>
+		<transition id="id43">
+			<source ref="id34"/>
+			<target ref="id30"/>
 			<label kind="synchronisation" x="-697" y="-153">btn_disabled!</label>
 		</transition>
-		<transition id="id40">
-			<source ref="id27"/>
-			<target ref="id28"/>
+		<transition id="id44">
+			<source ref="id31"/>
+			<target ref="id32"/>
 			<label kind="guard" x="-195" y="-289">PIN_suspended and alarm_active</label>
 			<label kind="synchronisation" x="-195" y="-272">btn_disabled!</label>
 			<nail x="-297" y="-255"/>
@@ -237,9 +257,9 @@ void update_attempts(int[0,1] b){
 			<nail x="204" y="-255"/>
 			<nail x="212" y="-246"/>
 		</transition>
-		<transition id="id41">
-			<source ref="id29"/>
-			<target ref="id33"/>
+		<transition id="id45">
+			<source ref="id33"/>
+			<target ref="id37"/>
 			<label kind="guard" x="-416" y="-17">PIN_ok and alarm_active</label>
 			<label kind="synchronisation" x="-416" y="0">PIN_checked?</label>
 			<label kind="assignment" x="-416" y="17">alarm_active = 0</label>
@@ -248,51 +268,51 @@ void update_attempts(int[0,1] b){
 			<nail x="-416" y="0"/>
 			<nail x="-459" y="0"/>
 		</transition>
-		<transition id="id42">
-			<source ref="id26"/>
-			<target ref="id30"/>
+		<transition id="id46">
+			<source ref="id30"/>
+			<target ref="id34"/>
 			<label kind="synchronisation" x="-637" y="-102">btn_B?</label>
 			<nail x="-578" y="-110"/>
 		</transition>
-		<transition id="id43">
-			<source ref="id28"/>
-			<target ref="id27"/>
+		<transition id="id47">
+			<source ref="id32"/>
+			<target ref="id31"/>
 			<label kind="synchronisation" x="0" y="-127">btn_B?</label>
 			<nail x="85" y="-102"/>
 			<nail x="-272" y="-102"/>
 		</transition>
-		<transition id="id44">
-			<source ref="id27"/>
-			<target ref="id26"/>
+		<transition id="id48">
+			<source ref="id31"/>
+			<target ref="id30"/>
 			<label kind="guard" x="-510" y="-289">PIN_suspended and !alarm_active</label>
 			<label kind="synchronisation" x="-510" y="-272">btn_disabled!</label>
 			<nail x="-348" y="-255"/>
 			<nail x="-459" y="-255"/>
 		</transition>
-		<transition id="id45">
-			<source ref="id29"/>
-			<target ref="id26"/>
+		<transition id="id49">
+			<source ref="id33"/>
+			<target ref="id30"/>
 			<label kind="guard" x="-407" y="-85">!PIN_ok and !alarm_active</label>
 			<label kind="synchronisation" x="-407" y="-68">PIN_checked?</label>
 			<nail x="-238" y="-51"/>
 			<nail x="-425" y="-51"/>
 		</transition>
-		<transition id="id46">
-			<source ref="id29"/>
-			<target ref="id32"/>
+		<transition id="id50">
+			<source ref="id33"/>
+			<target ref="id36"/>
 			<label kind="guard" x="-127" y="-170">PIN_ok and !alarm_active</label>
 			<label kind="synchronisation" x="-110" y="-204">PIN_checked?</label>
 			<label kind="assignment" x="-127" y="-153">alarm_active = 1</label>
 		</transition>
-		<transition id="id47">
-			<source ref="id27"/>
-			<target ref="id29"/>
+		<transition id="id51">
+			<source ref="id31"/>
+			<target ref="id33"/>
 			<label kind="guard" x="-305" y="-212">PIN_suspended == 0</label>
 			<label kind="synchronisation" x="-297" y="-238">PIN_check!</label>
 		</transition>
-		<transition id="id48">
-			<source ref="id26"/>
-			<target ref="id27"/>
+		<transition id="id52">
+			<source ref="id30"/>
+			<target ref="id31"/>
 			<label kind="synchronisation" x="-408" y="-204">btn_A?</label>
 		</transition>
 	</template>
@@ -300,49 +320,49 @@ void update_attempts(int[0,1] b){
 		<name x="5" y="5">User</name>
 		<declaration>// Place local declarations here.
 </declaration>
-		<location id="id49" x="-816" y="-408">
+		<location id="id53" x="-816" y="-408">
 		</location>
-		<location id="id50" x="-714" y="-408">
+		<location id="id54" x="-714" y="-408">
 		</location>
-		<location id="id51" x="-586" y="-408">
+		<location id="id55" x="-586" y="-408">
 		</location>
-		<init ref="id49"/>
-		<transition id="id52">
-			<source ref="id49"/>
-			<target ref="id50"/>
+		<init ref="id53"/>
+		<transition id="id56">
+			<source ref="id53"/>
+			<target ref="id54"/>
 			<label kind="synchronisation" x="-773" y="-382">btn_B!</label>
 			<nail x="-765" y="-357"/>
 		</transition>
-		<transition id="id53">
-			<source ref="id50"/>
-			<target ref="id49"/>
+		<transition id="id57">
+			<source ref="id54"/>
+			<target ref="id53"/>
 			<label kind="synchronisation" x="-790" y="-501">btn_disabled?</label>
 			<nail x="-714" y="-425"/>
 			<nail x="-739" y="-476"/>
 			<nail x="-799" y="-476"/>
 		</transition>
-		<transition id="id54">
-			<source ref="id51"/>
-			<target ref="id49"/>
+		<transition id="id58">
+			<source ref="id55"/>
+			<target ref="id53"/>
 			<label kind="synchronisation" x="-764" y="-314">PIN_checked?</label>
 			<nail x="-612" y="-297"/>
 			<nail x="-782" y="-297"/>
 		</transition>
-		<transition id="id55">
-			<source ref="id50"/>
-			<target ref="id51"/>
+		<transition id="id59">
+			<source ref="id54"/>
+			<target ref="id55"/>
 			<label kind="synchronisation" x="-696" y="-425">insert_PIN?</label>
 		</transition>
-		<transition id="id56">
-			<source ref="id49"/>
-			<target ref="id50"/>
+		<transition id="id60">
+			<source ref="id53"/>
+			<target ref="id54"/>
 			<label kind="synchronisation" x="-798" y="-425">btn_A!</label>
 		</transition>
 	</template>
 	<system>// Place template instantiations here.
 //Process = Template();
 // List one or more processes to be composed into a system.
-system User, Controller, PIN_checker;
+system User, Controller, PIN_checker, Burgler;
 </system>
 	<queries>
 		<query>
