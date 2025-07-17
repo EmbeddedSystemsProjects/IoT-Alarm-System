@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.6//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_6.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan btn_A, btn_B;
+chan btn_disabled;
+chan PIN_check, insert_PIN;
+broadcast chan PIN_checked;
+int[0,1] PIN_ok;
+int[0,1] PIN_suspended;
+</declaration>
+	<template>
+		<name>PIN_checker</name>
+		<declaration>clock countdown;
+int[0,3] failed_attempts;
+
+void update_attempts(int[0,1] b){
+  PIN_ok = b;
+  if (PIN_ok){
+    failed_attempts = 0;
+    }
+  else {
+    failed_attempts += 1;
+    }
+}</declaration>
+		<location id="id0" x="-476" y="-187">
+		</location>
+		<location id="id1" x="-238" y="59">
+			<label kind="invariant" x="-264" y="59">countdown&lt;=3000</label>
+		</location>
+		<location id="id2" x="-136" y="-187">
+			<committed/>
+		</location>
+		<location id="id3" x="-323" y="-187">
+			<committed/>
+		</location>
+		<init ref="id0"/>
+		<transition id="id4">
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-323" y="-136">PIN_ok == 0 &amp; failed_attempts &lt; 3</label>
+			<label kind="synchronisation" x="-306" y="-102">PIN_checked!</label>
+			<nail x="-212" y="-110"/>
+			<nail x="-357" y="-110"/>
+		</transition>
+		<transition id="id5">
+			<source ref="id2"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-390" y="-297">PIN_ok == 1</label>
+			<label kind="synchronisation" x="-390" y="-280">PIN_checked!</label>
+			<nail x="-178" y="-263"/>
+			<nail x="-408" y="-263"/>
+		</transition>
+		<transition id="id6">
+			<source ref="id1"/>
+			<target ref="id0"/>
+			<label kind="guard" x="-366" y="25">countdown&gt;=3000</label>
+			<label kind="assignment" x="-552" y="-68">PIN_suspended = 0, failed_attempts = 0</label>
+		</transition>
+		<transition id="id7">
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="guard" x="-161" y="-76">PIN_ok == 0 &amp; failed_attempts &gt;= 3</label>
+			<label kind="synchronisation" x="-161" y="-42">PIN_checked!</label>
+			<label kind="assignment" x="-204" y="17">countdown=0, PIN_suspended = 1</label>
+		</transition>
+		<transition id="id8">
+			<source ref="id3"/>
+			<target ref="id2"/>
+			<label kind="select" x="-306" y="-238">r : int[0,1]</label>
+			<label kind="synchronisation" x="-306" y="-204">insert_PIN!</label>
+			<label kind="assignment" x="-314" y="-187">update_attempts(r)</label>
+		</transition>
+		<transition id="id9">
+			<source ref="id0"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-442" y="-204">PIN_check?</label>
+		</transition>
+	</template>
+	<template>
+		<name>Controller</name>
+		<location id="id10" x="-476" y="-178">
+		</location>
+		<location id="id11" x="-323" y="-178">
+			<committed/>
+		</location>
+		<location id="id12" x="110" y="-178">
+			<name x="100" y="-212">on</name>
+		</location>
+		<location id="id13" x="-178" y="-178">
+		</location>
+		<init ref="id10"/>
+		<transition id="id14">
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-441" y="-289">PIN_suspended</label>
+			<label kind="synchronisation" x="-441" y="-272">btn_disabled!</label>
+			<nail x="-348" y="-255"/>
+			<nail x="-459" y="-255"/>
+		</transition>
+		<transition id="id15">
+			<source ref="id13"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-407" y="-110">PIN_ok == 0</label>
+			<label kind="synchronisation" x="-407" y="-93">PIN_checked?</label>
+			<nail x="-238" y="-76"/>
+			<nail x="-425" y="-76"/>
+		</transition>
+		<transition id="id16">
+			<source ref="id13"/>
+			<target ref="id12"/>
+			<label kind="guard" x="-93" y="-170">PIN_ok</label>
+			<label kind="synchronisation" x="-110" y="-204">PIN_checked?</label>
+		</transition>
+		<transition id="id17">
+			<source ref="id11"/>
+			<target ref="id13"/>
+			<label kind="guard" x="-305" y="-212">PIN_suspended == 0</label>
+			<label kind="synchronisation" x="-297" y="-238">PIN_check!</label>
+		</transition>
+		<transition id="id18">
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-408" y="-204">btn_A?</label>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">User</name>
+		<declaration>// Place local declarations here.
+</declaration>
+		<location id="id19" x="-816" y="-408">
+		</location>
+		<location id="id20" x="-714" y="-408">
+		</location>
+		<location id="id21" x="-586" y="-408">
+		</location>
+		<location id="id22" x="-501" y="-357">
+			<name x="-511" y="-391">Live</name>
+		</location>
+		<init ref="id19"/>
+		<transition id="id23">
+			<source ref="id20"/>
+			<target ref="id19"/>
+			<label kind="synchronisation" x="-790" y="-501">btn_disabled?</label>
+			<nail x="-714" y="-425"/>
+			<nail x="-739" y="-476"/>
+			<nail x="-799" y="-476"/>
+		</transition>
+		<transition id="id24">
+			<source ref="id21"/>
+			<target ref="id19"/>
+			<label kind="guard" x="-764" y="-357">PIN_ok == 0</label>
+			<label kind="synchronisation" x="-764" y="-340">PIN_checked?</label>
+			<nail x="-612" y="-323"/>
+			<nail x="-782" y="-323"/>
+		</transition>
+		<transition id="id25">
+			<source ref="id21"/>
+			<target ref="id22"/>
+			<label kind="guard" x="-568" y="-416">PIN_ok</label>
+			<label kind="synchronisation" x="-568" y="-399">PIN_checked?</label>
+		</transition>
+		<transition id="id26">
+			<source ref="id20"/>
+			<target ref="id21"/>
+			<label kind="synchronisation" x="-696" y="-425">insert_PIN?</label>
+		</transition>
+		<transition id="id27">
+			<source ref="id19"/>
+			<target ref="id20"/>
+			<label kind="synchronisation" x="-798" y="-425">btn_A!</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+//Process = Template();
+// List one or more processes to be composed into a system.
+system User, Controller, PIN_checker;
+</system>
+	<queries>
+		<query>
+			<formula/>
+			<comment/>
+		</query>
+	</queries>
+</nta>
