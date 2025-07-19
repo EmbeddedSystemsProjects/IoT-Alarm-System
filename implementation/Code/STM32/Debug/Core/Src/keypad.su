@@ -1,2 +1,0 @@
-../Core/Src/keypad.c:19:6:scan_keypad	16	static
-../Core/Src/keypad.c:71:6:handle_keypress	16	static

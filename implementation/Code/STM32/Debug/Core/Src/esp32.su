@@ -1,2 +1,0 @@
-../Core/Src/esp32.c:10:6:esp32getIP	80	static
-../Core/Src/esp32.c:86:6:is_valid_ip	64	static
