@@ -1,0 +1,12 @@
+../Core/Src/display.c:10:6:Display_Init	8	static
+../Core/Src/display.c:18:6:Display_BootMessage	16	static
+../Core/Src/display.c:41:6:Display_SystemStatus	24	static
+../Core/Src/display.c:62:6:Display_LockedScreen	56	static
+../Core/Src/display.c:82:6:Display_EnterPincode	32	static
+../Core/Src/display.c:112:6:Display_AccessGranted	16	static
+../Core/Src/display.c:125:6:Display_AccessDenied	16	static
+../Core/Src/display.c:139:6:Display_AlarmScreen	24	static
+../Core/Src/display.c:150:6:Display_IPAddress	24	static
+../Core/Src/display.c:164:6:Display_I2CScanResult	40	static
+../Core/Src/display.c:176:6:Display_Clear	8	static
+../Core/Src/display.c:183:6:Display_Update	8	static
