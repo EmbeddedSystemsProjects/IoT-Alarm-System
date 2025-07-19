@@ -1,3 +1,0 @@
-../Core/Inc/delay.h:21:22:DWT_Delay_us	2
-../Core/Src/delay.c:9:10:DWT_Delay_Init	2
-../Core/Src/delay.c:32:6:DWT_Delay_ms	2
