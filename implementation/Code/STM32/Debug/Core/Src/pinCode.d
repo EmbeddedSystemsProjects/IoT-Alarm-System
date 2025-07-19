@@ -1,4 +1,6 @@
-Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
+Core/Src/pinCode.o: ../Core/Src/pinCode.c ../Core/Inc/pinCode.h \
+ ../Core/Inc/config.h ../Core/Inc/config.h ../Core/Inc/flashMemory.h \
+ ../Core/Inc/display.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
@@ -28,8 +30,15 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-../Core/Inc/main.h:
+ ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
+ ../Drivers/ssd1306/ssd1306.h ../Drivers/ssd1306/ssd1306_conf.h \
+ ../Drivers/ssd1306/ssd1306_fonts.h ../Drivers/ssd1306/ssd1306.h \
+ ../Core/Inc/pincode.h
+../Core/Inc/pinCode.h:
+../Core/Inc/config.h:
+../Core/Inc/config.h:
+../Core/Inc/flashMemory.h:
+../Core/Inc/display.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
@@ -60,3 +69,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
+../Drivers/ssd1306/ssd1306.h:
+../Drivers/ssd1306/ssd1306_conf.h:
+../Drivers/ssd1306/ssd1306_fonts.h:
+../Drivers/ssd1306/ssd1306.h:
+../Core/Inc/pincode.h:

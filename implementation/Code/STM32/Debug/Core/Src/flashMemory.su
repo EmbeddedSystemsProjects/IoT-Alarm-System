@@ -1,0 +1,2 @@
+../Core/Src/flashMemory.c:10:6:SaveToFlash	48	static
+../Core/Src/flashMemory.c:37:10:ReadFromFlash	16	static
