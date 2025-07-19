@@ -22,7 +22,99 @@ This project is a burglar alarm system designed for home and office security. It
 - **Reed Switch Sensor**: Door/window opening detection  
 - **HC-SR501 PIR Sensor**: Motion detection  
 - **Active Buzzer**: Acoustic siren  
+## System Architecture
 
+![Block Diagram](Assets/Block_Diagram.svg)
+
+The system is divided into two main units:
+
+1. **STM32 Nucleo-64**:
+   - Sensor and alarm logic management  
+   - Display and user interface control  
+   - I2C communication with ESP32  
+
+2. **ESP32 Wemos S2 mini**:
+   - WiFi connection and notifications  
+   - Web interface configuration  
+   - WhatsApp message dispatch  
+
+![Wiring Diagram](Assets/wiring.png)
+
+## Key Features
+
+### 1. 4x4 Matrix Keypad
+
+Used for PIN code input:
+
+- 8 total pins (4 rows as output, 4 columns as input)  
+- Integrated software debounce (500 ms)  
+- Visual feedback during entry  
+
+![Keypad Functioning](Assets/keypad.gif)  
+*Credits: [Antonio Mancuso's Blog](https://mancusoa74.blogspot.com/2017/02/scratch-e-arduino-progetto-6-tastierino.html)*
+
+```c
+static const char keypad[4][4] = {
+    {'1','2','3','A'},
+    {'4','5','6','B'},
+    {'7','8','9','C'},
+    {'*','0','#','D'}
+};
+```
+
+### 2. Alarm System
+
+**Triggers**:
+
+- Door/window openings (reed switch)  
+- Unauthorized movements (PIR sensor)   
+
+**Actions**:
+
+- Activate buzzer  
+- Immediate WhatsApp alert  
+- OLED display blinking  
+
+### 3. Security Management
+
+- PIN code authentication  
+- Temporary lockout after 3 failed attempts (configurable)  
+- PIN code stored in flash memory   
+
+## Firmware flowchart
+
+![Flowchart](materials/images/flowchart_final.drawio.svg
+
+## Project Status
+
+### Hardware:
+
+- [x] Schematic creation  
+- [x] Full component testing  
+- [x] Integrated shield development  
+
+### STM32 Firmware:
+
+- [x] Display initialization  
+- [x] Flash-based PIN management  
+- [x] Alarm functions  
+- [x] Reed switch via interrupt  
+- [x] PIR sensor integration  
+- [x] I2C communication with ESP32  
+
+### ESP32 Firmware:
+
+- [x] WiFi connection  
+- [x] IP information dispatch  
+- [x] WhatsApp notifications  
+
+## Installation
+
+### Prerequisites
+
+- STM32CubeIDE for STM32 development  
+- Arduino IDE for ESP32 programming  
+- Required libraries (see section below) 
 ## Libraries Used
 
 This project makes use of the following open-source libraries:
@@ -58,14 +150,14 @@ This project makes use of the following open-source libraries:
    
    Example of activation message exchange with CallMeBot:
    
-   ![CallMeBot Activation](Assets/callmebot-activation.png)
+   ![CallMeBot Activation](materials/images/callmebot-activation.png)
 
 6. **ESP32 Setup**:
    - On power-up, connect to the "AutoConnectAP" network  
    - Enter WiFi credentials in the web interface  
    - Set phone number and WhatsApp API key  
 
-   ![ESP32 Configuration](Assets/ESP32-Configuration.png)
+   ![ESP32 Configuration](materials/images/ESP32-Configuration.png)
 
 ## Usage
 
