@@ -1,6 +1,8 @@
 "./Core/Src/delay.o"
 "./Core/Src/display.o"
+"./Core/Src/esp32.o"
 "./Core/Src/flashMemory.o"
+"./Core/Src/keypad.o"
 "./Core/Src/main.o"
 "./Core/Src/pinCode.o"
 "./Core/Src/ssd1306_fonts.o"
