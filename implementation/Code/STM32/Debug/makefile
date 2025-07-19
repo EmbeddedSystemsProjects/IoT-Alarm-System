@@ -61,8 +61,8 @@ all: main-build
 main-build: IoT-Alarm-System.elf secondary-outputs
 
 # Tool invocations
-IoT-Alarm-System.elf IoT-Alarm-System.map: $(OBJS) $(USER_OBJS) C:\Projects\IoT-Alarm-System\implementation\Code\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "IoT-Alarm-System.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Projects\IoT-Alarm-System\implementation\Code\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="IoT-Alarm-System.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+IoT-Alarm-System.elf IoT-Alarm-System.map: $(OBJS) $(USER_OBJS) C:\Projects\IoT-Alarm-System\implementation\Code\STM32\STM32F401RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "IoT-Alarm-System.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Projects\IoT-Alarm-System\implementation\Code\STM32\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="IoT-Alarm-System.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
