@@ -24,7 +24,7 @@ This project is a burglar alarm system designed for home and office security. It
 - **Active Buzzer**: Acoustic siren  
 ## System Architecture
 
-![Block Diagram](Assets/Block_Diagram.svg)
+![Block Diagram](materials/images/Architecture_diagram_pictures.drawio.svg)
 
 The system is divided into two main units:
 
@@ -38,7 +38,7 @@ The system is divided into two main units:
    - Web interface configuration  
    - WhatsApp message dispatch  
 
-![Wiring Diagram](Assets/wiring.png)
+![Wiring Diagram](implementation/Schematics/wiring.svg)
 
 ## Key Features
 
@@ -50,7 +50,7 @@ Used for PIN code input:
 - Integrated software debounce (500 ms)  
 - Visual feedback during entry  
 
-![Keypad Functioning](Assets/keypad.gif)  
+![Keypad Functioning](materials/images/keypad.gif)  
 *Credits: [Antonio Mancuso's Blog](https://mancusoa74.blogspot.com/2017/02/scratch-e-arduino-progetto-6-tastierino.html)*
 
 ```c
@@ -83,7 +83,7 @@ static const char keypad[4][4] = {
 
 ## Firmware flowchart
 
-![Flowchart](materials/images/flowchart_final.drawio.svg
+![Flowchart](materials/images/flowchart_final.drawio.svg)
 
 ## Project Status
 
@@ -174,13 +174,10 @@ This project makes use of the following open-source libraries:
 - For ESP32, use `driver/i2c.h` instead of `Wire.h`  
 - Power components with 5V for stability
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
 
-Special thanks to the authors of the open-source libraries and the community for their valuable contributions.
+Special thanks to [Francesco Bellotti](https://github.com/FranzGH), [Riccardo Berta](https://github.com/riccardoberta), [Luca Lazzaroni](https://github.com/lucalazzaroni), [Matteo Fresta](https://github.com/mattefresta), the rest of the [Elios Lab Team](https://github.com/Elios-Lab) and the authors of the open-source libraries and the community for their valuable contributions.
 
 ---
 
