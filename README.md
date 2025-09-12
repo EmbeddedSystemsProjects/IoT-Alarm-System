@@ -38,7 +38,7 @@ The system is divided into two main units:
    - Web interface configuration  
    - WhatsApp message dispatch  
 
-![Wiring Diagram](implementation/Schematics/wiring.svg)
+![Wiring Diagram](implementation/Schematics/wiring.png)
 
 ## Key Features
 
